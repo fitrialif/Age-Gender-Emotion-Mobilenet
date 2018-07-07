@@ -66,12 +66,15 @@ print(result_future.outputs['age'].float_val[0]-9)
 ![alt text](results/surprise-cpu.png)
 
 Accuracy gender during training
+
 ![alt text](results/acc-gender.png)
 
 Entropy gender during training
+
 ![alt text](results/entropy-gender.png)
 
 Absolute loss age during training
+
 ![alt text](results/age-loss.png)
 
 I able to get 17 fps on GTX 970M, while CPU around 8 fps.
