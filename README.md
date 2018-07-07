@@ -1,2 +1,45 @@
 # Age-Gender-Emotion-Mobilenet
-Transfer learning for age, gender and emotion classification on mobilenet
+Transfer learning for age, gender and emotion classifications on mobilenet architecture in a single feed-forward!
+
+## Requirements
+```bash
+pip3 install numpy scipy tensorflow
+```
+
+## How-to Prepare Datasets
+1. Download this emotion dataset, https://drive.google.com/open?id=1V9fy_Me9ZjmMTJoTWz0L8AUdIW5k35bE, unzip in current directory
+2. Download pretrained mobilenet V2, https://storage.googleapis.com/mobilenet_v2/checkpoints/mobilenet_v2_1.0_224.tgz, and unzip in current directory
+3. Download this age and gender dataset, https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/static/wiki_crop.tar, unzip in current directory
+4. run prepare_dataset.ipynb using Jupyter Notebook
+5. run,
+```bash
+mkdir crop
+python3 augmentation.py
+```
+
+## How-to Train
+1. Run jupyter notebook,
+```bash
+jupyter notebook
+```
+2. run emotion-transfer-learning.ipynb, you can check the batch size and epoch inside the notebook.
+3. run age-gender-transfer-learning.ipynb, you can check the batch and epoch inside the notebook.
+4. You can check tensorboard during training session, 
+```bash
+tensorboard --logdir=./logs
+```
+
+## To test on live camera
+```bash
+python3 live.py
+```
+
+## You can download pretrained age-emotion-gender here, https://drive.google.com/file/d/1t--oS5G4ErLcrFcItEm-cBg8NGfssixs/view?usp=sharing
+
+## Results
+
+![alt text](results/happy-gpu.png)
+
+![alt text](results/surprise-cpu.png)
+
+I able to get 17 fps on GTX 970M, while CPU around 8 fps.
