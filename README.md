@@ -34,6 +34,29 @@ tensorboard --logdir=./logs
 python3 live.py
 ```
 
+## How-to use tensorflow serving
+1. run,
+```bash
+python3 save-tf-serving.py
+```
+2. run,
+```bash
+tensorflow_model_server --port=9000 --model_name=mobilenet --model_base_path=serving/versions
+```
+3. run client-serving.ipynb
+```python
+img = imread('test/another-husein.jpg')
+request.inputs['image'].CopyFrom(
+  tf.contrib.util.make_tensor_proto(img.astype(dtype=np.float32), shape=img.shape))
+result_future = stub.Predict(request, 30.)
+print(label_genders[np.argmax(result_future.outputs['gender'].float_val)])
+# male
+print(label_emotions[np.argmax(result_future.outputs['emotion'].float_val)])
+# surprise
+print(result_future.outputs['age'].float_val[0]-9)
+# 22.0
+```
+
 ## You can download pretrained age-emotion-gender here, https://drive.google.com/file/d/1t--oS5G4ErLcrFcItEm-cBg8NGfssixs/view?usp=sharing
 
 ## Results
